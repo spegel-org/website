@@ -1,0 +1,36 @@
+title: Spegel
+module:
+  imports:
+  - path: github.com/imfing/hextra
+menu:
+  main:
+    # - name: Docs
+    #   weight: 1
+    #   pageRef: /docs
+    - name: Search
+      weight: 2
+      params:
+        type: search
+    - name: GitHub
+      weight: 3
+      url: "https://github.com/spegel-org/spegel"
+      params:
+        icon: github
+enableRobotsTXT: true
+enableEmoji: true
+enableGitInfo: true
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: false
+  footer:
+    displayCopyright: true
+    displayPoweredBy: true
+  page:
+    width: wide
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
