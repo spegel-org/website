@@ -7,10 +7,10 @@ menu:
     # - name: Docs
     #   weight: 1
     #   pageRef: /docs
-    - name: Search
-      weight: 2
-      params:
-        type: search
+    # - name: Search
+    #   weight: 2
+    #   params:
+    #     type: search
     - name: GitHub
       weight: 3
       url: "https://github.com/spegel-org/spegel"
