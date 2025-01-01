@@ -1,7 +1,7 @@
 ---
 title: FAQ
 type: docs
-weight: 6
+weight: 5
 ---
 
 ## Can I use Spegel in production?

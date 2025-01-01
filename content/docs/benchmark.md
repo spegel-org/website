@@ -1,13 +1,13 @@
 ---
 title: Benchmark
-weight: 4
+weight: 3
 ---
 
 Spegel performance is measured using the [Benchmark tool](https://github.com/spegel-org/benchmark) to give an idea of the expected performance that Spegel can deliver. The tool enables a generic method of measuring image pull performance using different deployment conditions in Kubernetes.
 
 ## Method
 
-The benchmarks were run on AKS v1.29 with 50 `Standard_D4ds_v5` nodes. The environment was setup using the provided [Terraform configuration](https://github.com/spegel-org/benchmark/tree/main/terraform). Spegel v0.0.27 is installed in the cluster using the default configuration.
+The benchmarks were run on AKS v1.29 with 50 `Standard_D4ds_v5` nodes. The environment was setup using the provided [Terraform configuration](https://github.com/spegel-org/benchmark/tree/main/terraform). Spegel is installed in the cluster using the default configuration.
 
 The measurements are done using the generated [benchmark images](https://github.com/spegel-org/benchmark/pkgs/container/benchmark). These images are provided as a v1 and v2 to simulate a rolling upgrade.
 
@@ -32,16 +32,49 @@ benchmark analyze --path $RESULT
 
 ## Results
 
-The results are compared to the [baseline results](https://github.com/spegel-org/benchmark/tree/main/results) which have been measured with the same setup but without Spegel running in the cluster.
+The results are compared to the [baseline results](https://github.com/spegel-org/benchmark-results/tree/main/results/baseline) which have been measured with the same setup but without Spegel running in the cluster.
 
-| Image | Baseline | Spegel |
-| --- | :---: | :---: | 
-| 10 MB 1 layer | ![](https://github.com/spegel-org/benchmark/blob/main/results/10MB-1.png) | ![](../benchmark/v0.0.27/10MB-1.png) |
-| 10 MB 4 layer | ![](https://github.com/spegel-org/benchmark/blob/main/results/10MB-4.png) | ![](../benchmark/v0.0.27/10MB-4.png) |
-| 100 MB 1 layer | ![](https://github.com/spegel-org/benchmark/blob/main/results/100MB-1.png) | ![](../benchmark/v0.0.27/100MB-1.png) |
-| 100 MB 4 layer | ![](https://github.com/spegel-org/benchmark/blob/main/results/100MB-4.png) | ![](../benchmark/v0.0.27/100MB-4.png) |
-| 1 GB 1 layer | ![](https://github.com/spegel-org/benchmark/blob/main/results/1GB-1.png) | ![](../benchmark/v0.0.27/1GB-1.png) |
-| 1 GB 4 layer | ![](https://github.com/spegel-org/benchmark/blob/main/results/1GB-4.png) | ![](../benchmark/v0.0.27/1GB-4.png) |
+{{< nesteddetails title="10 MB in 1 layer" closed="true" >}}
+  {{< cards cols="1" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/10MB-1.png" title="Baseline" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/10MB-1.png" title="Spegel" >}}
+  {{< /cards >}}
+{{< /nesteddetails >}}
+
+{{< nesteddetails title="10 MB in 4 layers" closed="true" >}}
+  {{< cards cols="1" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/10MB-4.png" title="Baseline" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/10MB-4.png" title="Spegel" >}}
+  {{< /cards >}}
+{{< /nesteddetails >}}
+
+{{< nesteddetails title="100 MB in 1 layer" closed="true" >}}
+  {{< cards cols="1" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/100MB-1.png" title="Baseline" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/100MB-1.png" title="Spegel" >}}
+  {{< /cards >}}
+{{< /nesteddetails >}}
+
+{{< nesteddetails title="100 MB in 4 layers" closed="true" >}}
+  {{< cards cols="1" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/100MB-4.png" title="Baseline" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/100MB-4.png" title="Spegel" >}}
+  {{< /cards >}}
+{{< /nesteddetails >}}
+
+{{< nesteddetails title="1 GB in 1 layer" closed="true" >}}
+  {{< cards cols="1" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/1GB-1.png" title="Baseline" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/1GB-1.png" title="Spegel" >}}
+  {{< /cards >}}
+{{< /nesteddetails >}}
+
+{{< nesteddetails title="1 GB in 4 layers" closed="true" >}}
+  {{< cards cols="1" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/1GB-4.png" title="Baseline" >}}
+    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/1GB-4.png" title="Spegel" >}}
+  {{< /cards >}}
+{{< /nesteddetails >}}
 
 ## Analysis
 

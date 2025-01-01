@@ -14,9 +14,9 @@ toc: false
 {{< /hextra/hero-subtitle >}}
 </div>
 
-<!-- <div class="hx-mb-6"> -->
-<!-- {{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}} -->
-<!-- </div> -->
+<div class="hx-mb-6">
+{{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
+</div>
 
 ![landscape](/images/overview.gif)
 

@@ -1,6 +1,6 @@
 ---
 title: Architecture
-weight: 3
+weight: 2
 ---
 
 Spegel can run as a stateless application by exploiting the fact that an image pulled by a node is not immediately garbage collected. Spegel is deployed as a Daemonset on each node which acts as both the registry and mirror. Each instance is reachable both locally through a host port and a Service. This enables Containerd to be configured to use the localhost interface as a registry mirror and for Spegel instances to forward requests to each other.
