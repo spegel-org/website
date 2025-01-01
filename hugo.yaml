@@ -16,6 +16,7 @@ menu:
       url: "https://github.com/spegel-org/spegel"
       params:
         icon: github
+baseURL: https://spegel.dev
 enableRobotsTXT: true
 enableEmoji: true
 enableGitInfo: true
