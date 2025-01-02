@@ -1,5 +1,6 @@
 ---
-type: docs
+cascade:
+  type: docs
 ---
 
 ## Introduction
