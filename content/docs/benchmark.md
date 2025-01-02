@@ -1,6 +1,6 @@
 ---
 title: Benchmark
-weight: 3
+weight: 4
 ---
 
 Spegel performance is measured using the [Benchmark tool](https://github.com/spegel-org/benchmark) to give an idea of the expected performance that Spegel can deliver. The tool enables a generic method of measuring image pull performance using different deployment conditions in Kubernetes.
