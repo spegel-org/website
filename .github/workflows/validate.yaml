@@ -10,7 +10,7 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.140.1
