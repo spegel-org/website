@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://spegel.dev/sitemap.xml
