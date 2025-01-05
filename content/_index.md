@@ -15,7 +15,7 @@ toc: false
 </div>
 
 <div class="hx-mb-6">
-{{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
+{{< hextra/hero-button text="Get Started" link="/docs/getting-started/" style="background-color: #164577" >}}
 </div>
 
 ![landscape](/images/overview.gif)

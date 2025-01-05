@@ -1,10 +1,10 @@
 {
   "name": "Spegel",
   "short_name": "Spegel",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#FAA93B",
+  "background_color": "#FAEAD4",
   "display": "browser",
-  "start_url": "index.html",
+  "start_url": "/",
   "icons": [
     {
       "src": "android-chrome-192x192.png",

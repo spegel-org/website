@@ -24,7 +24,12 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 params:
   navbar:
     displayTitle: true
-    displayLogo: false
+    displayLogo: true
+    logo:
+      path: images/logo-transparent.svg
+      link: /
+      width: 40
+      height: 40
   footer:
     displayCopyright: true
     displayPoweredBy: true
