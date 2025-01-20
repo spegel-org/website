@@ -26,6 +26,7 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | --- | --- |
 | :green_circle: | AKS |
 | :green_circle: | Minikube |
+| :green_circle: | [VKE](https://www.volcengine.com/product/vke) |
 | :yellow_circle: | EKS |
 | :yellow_circle: | K3S and RKE2 |
 | :yellow_circle: | Kind |
@@ -40,7 +41,7 @@ This needs to be disabled as otherwise all of the required layers of an image wo
 
 #### Amazon Linux 2
 
-If your EKS AMI is based on AL2, the included containerd config [imports overrides](https://github.com/awslabs/amazon-eks-ami/blob/main/templates/al2/runtime/containerd-config.toml) 
+If your EKS AMI is based on AL2, the included containerd config [imports overrides](https://github.com/awslabs/amazon-eks-ami/blob/main/templates/al2/runtime/containerd-config.toml)
 from `/etc/containerd/config.d/*.toml` by default. The best way to change containerd settings is to add a file to the import directory using a custom node bootstrap script in your launch template.
 
 ```shell
@@ -60,7 +61,7 @@ EOL
 
 #### Amazon Linux 2023
 
-If you are using an AL2023-based EKS AMI, bootstrap involves [nodeadm configuration](https://awslabs.github.io/amazon-eks-ami/nodeadm/). To change containerd settings, you should add a 
+If you are using an AL2023-based EKS AMI, bootstrap involves [nodeadm configuration](https://awslabs.github.io/amazon-eks-ami/nodeadm/). To change containerd settings, you should add a
 nodeadm configuration section.
 
 ```yaml
