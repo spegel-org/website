@@ -26,11 +26,11 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | --- | --- |
 | :green_circle: | [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) |
 | :green_circle: | [Minikube](https://minikube.sigs.k8s.io/docs/) |
-| :green_circle: | [VKE](https://www.volcengine.com/product/vke) |
 | :yellow_circle: | [EKS](https://aws.amazon.com/eks/) |
 | :yellow_circle: | [K3S](https://k3s.io/) and [RKE2](https://docs.rke2.io/) |
 | :yellow_circle: | [Kind](https://kind.sigs.k8s.io/) |
 | :yellow_circle: | [Talos](https://www.talos.dev/) |
+| :yellow_circle: | [VKE](https://www.volcengine.com/product/vke) |
 | :red_circle: | [GKE](https://cloud.google.com/kubernetes-engine) |
 | :red_circle: | [DigitalOcean](https://www.digitalocean.com/products/kubernetes) |
 
@@ -137,6 +137,20 @@ Talos comes with Pod Security Admission [pre-configured](https://www.talos.dev/l
 
 ```shell
 kubectl label namespace spegel pod-security.kubernetes.io/enforce=privileged
+```
+
+### VKE
+
+VKE CNI Cello [don't support](https://github.com/volcengine/cello/issues/15) setting hostPorts at the same range of `net.ipv4.ip_local_port_range`.
+You can view the exact range by running `sysctl net.ipv4.ip_local_port_range` on your node.
+
+To workaround this issue, you need to set a custom hostPort when deploying spegel.
+This can easily be done by setting hostPort in the helm chart.
+
+```yaml
+service:
+  registry:
+    hostPort: 3020
 ```
 
 ### GKE
