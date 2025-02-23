@@ -1,7 +1,7 @@
 ---
 title: Resources
 type: docs
-weight: 2
+weight: 3
 ---
 
 We’re happy to share resources contributed by the community. We hope you find them useful!
