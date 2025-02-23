@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0; url=/project/adopters" />
+<meta http-equiv="refresh" content="0; url=/project/community" />
