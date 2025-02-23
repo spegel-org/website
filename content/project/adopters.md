@@ -1,16 +1,17 @@
 ---
 title: Adopters
 type: docs
+toc: false
 weight: 2
 ---
 
-<p>These organizations are embracing Spegel in production.<p>
-<p>Thank you for being a part of our community!  🌟💖<p>
+<p>These organizations are embracing Spegel in production.</br> Thank you for being a part of our community! 🌟💖</p>
+<p>To be included, add your project or company to the <a target="_blank" href="https://github.com/spegel-org/website/blob/main/data/adopters.yaml">adopters list</a>.</p>
 
 <style>
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
   margin-top: 16px;
 }
