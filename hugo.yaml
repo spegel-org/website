@@ -7,12 +7,15 @@ menu:
     - name: Docs
       weight: 1
       pageRef: /docs
-    - name: Search
+    - name: Project
       weight: 2
+      pageRef: /project
+    - name: Search
+      weight: 3
       params:
         type: search
     - name: GitHub
-      weight: 3
+      weight: 4
       url: "https://github.com/spegel-org/spegel"
       params:
         icon: github

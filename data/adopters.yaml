@@ -1,0 +1,17 @@
+projects:
+  - name: K3S
+    link: https://k3s.io
+    image: /images/logos/k3s.svg
+  - name: RKE2
+    link: https://docs.rke2.io
+    image: /images/logos/rke2.png
+companies:
+  - name: National Research Platform
+    link: https://nationalresearchplatform.org/
+    image: /images/logos/nrp.webp
+  - name: Nemlig
+    link: https://www.nemlig.com/
+    image: /images/logos/nemlig.svg
+  - name: Xenit AB
+    link: https://xenit.se
+    image: /images/logos/xenit.png
