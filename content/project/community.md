@@ -6,6 +6,10 @@ weight: 1
 
 Spegel is an open project where everyone is welcome to contribute, discuss, and improve the tool. Whether you want to share ideas, report issues, or help with development, your input matters.
 
+## Slack
+
+Join the **#spegel** channel in the [Kubernetes Slack](https://communityinviter.com/apps/kubernetes/community) to chat about Spegel. This is a great place for discussions, questions, and ideas—whether you're exploring Spegel or already using it, we’d love to hear from you! For bug reports and feature requests, please create an issue on GitHub.
+
 ## Meeting
 
 We meet every Tuesday at 17:00 CET to discuss Spegel development, improvements, and ideas. Everyone is welcome to join!
