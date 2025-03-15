@@ -106,8 +106,6 @@ containerdConfigPatches:
     content_sharing_policy = "isolated"
 ```
 
-For a full example, see the end-to-end tests' [Kind configuration](../test/e2e/kind-config-iptables.yaml) for a full example.
-
 ### K3S and RKE2
 
 K3S and RKE2 embeds Spegel, refer to their [documentation](https://docs.k3s.io/installation/registry-mirror?_highlight=spegel) for deployment information.
