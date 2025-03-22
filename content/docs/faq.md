@@ -83,3 +83,7 @@ In certain situations deploying multiple separate Spegel clusters is beneficial.
 helm upgrade --create-namespace --namespace spegel --install --version ${SPEGEL_VERSION} spegel-one oci://ghcr.io/spegel-org/helm-charts/spegel --set "nodeSelector.group=one" --set "service.registry.nodePort=30021"
 helm upgrade --create-namespace --namespace spegel --install --version ${SPEGEL_VERSION} spegel-two oci://ghcr.io/spegel-org/helm-charts/spegel --set "nodeSelector.group=two" --set "service.registry.nodePort=30022"
 ```
+
+## Why are default memory requests and limits set in the Helm chart?
+
+Linux file reading relies on the VFS cache, which keeps file chunks in memory for efficiency. In a containerized environment, VFS cache usage contributes to the container's memory consumption. Since VFS cache is only cleared under memory pressure, Spegel may appear to consume increasing amounts of memory until it reaches the available memory on the node. To prevent excessive memory usage, the Helm chart sets a default memory limit of 128Mi, ensuring that the cache is cleared when necessary.
