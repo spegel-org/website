@@ -5,6 +5,54 @@ weight: 1
 
 Before deploying Spegel read the compatibility section to make sure that the Kubernetes flavor of your choosing is supported or requires specific configuration to work.
 
+## Deploying
+
+Use the Helm chart to deploy Spegel into your Kubernetes cluster. Refer to the [Helm Chart](https://github.com/spegel-org/spegel/tree/main/charts/spegel) for detailed configuration documentation.
+
+### CLI
+
+To deploy Spegel with the Helm CLI run the command.
+
+```shell
+helm upgrade --create-namespace --namespace spegel --install spegel oci://ghcr.io/spegel-org/helm-charts/spegel
+```
+
+### Flux
+
+To deploy Spegel with Flux commit the configuration.
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: spegel
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: spegel
+  namespace: spegel
+spec:
+  type: "oci"
+  interval: 5m0s
+  url: oci://ghcr.io/spegel-org/helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: spegel
+  namespace: spegel
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: spegel
+      interval: 5m
+      sourceRef:
+        kind: HelmRepository
+        name: spegel
+```
+
 ## Compatibility
 
 Currently, Spegel only works with Containerd, in the future other container runtime interfaces may be supported. Spegel relies on [Containerd registry mirroring](https://github.com/containerd/containerd/blob/main/docs/hosts.md#cri) to route requests to the correct destination.
@@ -158,52 +206,3 @@ GKE does not set the registry config path in its Containerd configuration. On to
 ### DigitalOcean
 
 DigitalOcean does not set the registry config path in its Containerd configuration.
-
-## Deploying
-
-Use the Helm chart to deploy Spegel into your Kubernetes cluster. Refer to the [Helm Chart](https://github.com/spegel-org/spegel/tree/main/charts/spegel) for detailed configuration documentation.
-
-### CLI
-
-To deploy Spegel with the Helm CLI run the command.
-
-```shell
-helm upgrade --create-namespace --namespace spegel --install --version ${SPEGEL_VERSION} spegel oci://ghcr.io/spegel-org/helm-charts/spegel
-```
-
-### Flux
-
-To deploy Spegel with Flux commit the configuration.
-
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: spegel
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: spegel
-  namespace: spegel
-spec:
-  type: "oci"
-  interval: 5m0s
-  url: oci://ghcr.io/spegel-org/helm-charts
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: spegel
-  namespace: spegel
-spec:
-  interval: 1m
-  chart:
-    spec:
-      chart: spegel
-      version: ${SPEGEL_VERSION}
-      interval: 5m
-      sourceRef:
-        kind: HelmRepository
-        name: spegel
-```
