@@ -15,3 +15,6 @@ companies:
   - name: Xenit AB
     link: https://xenit.se
     image: /images/logos/xenit.png
+  - name: Pipekit
+    link: https://pipekit.io
+    image: /images/logos/pipekit.png
