@@ -26,7 +26,7 @@ baseURL: https://spegel.dev
 enableRobotsTXT: true
 enableEmoji: true
 enableGitInfo: true
-disableKinds: ["taxonomy", "taxonomyTerm"]
+disableKinds: ["taxonomy"]
 params:
   navbar:
     displayTitle: true
