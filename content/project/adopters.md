@@ -17,9 +17,9 @@ weight: 2
 }
 
 .item {
-  border-color: #e5e7eb;
+  border-color: light-dark(#e5e7eb, #404040);
   border-width: 1px;
-  background-color: #f3f4f6;
+  background-color: light-dark(#f3f4f6, #262626);
   border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.3s ease-in-out;
