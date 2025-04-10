@@ -59,7 +59,7 @@ Currently, Spegel only works with Containerd, in the future other container runt
 This requires Containerd to be properly configured, if it is not Spegel will exit. First of all the registry config path needs to be set, this is not done by default in Containerd. Second of all discarding unpacked layers cannot be enabled.
 Some Kubernetes flavors come with this setting out of the box, while others do not. Spegel is not able to write this configuration for you as it requires a restart of Containerd to take effect.
 
-```toml
+```toml {filename="/etc/containerd/config.toml"}
 version = 2
 
 [plugins."io.containerd.grpc.v1.cri".registry]
