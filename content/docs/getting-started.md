@@ -75,6 +75,7 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | :green_circle: | [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) |
 | :green_circle: | [Minikube](https://minikube.sigs.k8s.io/docs/) |
 | :yellow_circle: | [EKS](https://aws.amazon.com/eks/) |
+| :yellow_circle: | [K0S](https://k0sproject.io/) |
 | :yellow_circle: | [K3S](https://k3s.io/) and [RKE2](https://docs.rke2.io/) |
 | :yellow_circle: | [Kind](https://kind.sigs.k8s.io/) |
 | :yellow_circle: | [Talos](https://www.talos.dev/) |
@@ -132,6 +133,29 @@ spec:
 ...
 ```
 
+### K0S
+
+As K0S packages its own Containerd some paths will be different than the standard defaults. First of all the Containerd configuration needs to be appended to. The following configuration must be written to `/etc/k0s/containerd.d/spegel.toml` before K0S starts for the configuration to be picked up.
+
+```toml {filename="/etc/k0s/containerd.d/spegel.toml"}
+[plugins."io.containerd.grpc.v1.cri".registry]
+   config_path = "/etc/containerd/certs.d"
+[plugins."io.containerd.grpc.v1.cri".containerd]
+   discard_unpacked_layers = false
+```
+
+After K0S has started Spegel can be installed with the slight modified values as the Containerd socket and content path will be different.
+
+```yaml
+spegel:
+  containerdSock: "/run/k0s/containerd.sock"
+  containerdContentPath: "/var/lib/k0s/containerd/io.containerd.content.v1.content"
+```
+
+### K3S and RKE2
+
+K3S and RKE2 embeds Spegel, refer to their [documentation](https://docs.k3s.io/installation/registry-mirror?_highlight=spegel) for deployment information.
+
 ### Kind
 
 Spegel uses Kind for its end-to-end tests.
@@ -153,10 +177,6 @@ containerdConfigPatches:
   [plugins."io.containerd.metadata.v1.bolt"]
     content_sharing_policy = "isolated"
 ```
-
-### K3S and RKE2
-
-K3S and RKE2 embeds Spegel, refer to their [documentation](https://docs.k3s.io/installation/registry-mirror?_highlight=spegel) for deployment information.
 
 ### Talos
 
