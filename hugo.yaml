@@ -13,12 +13,15 @@ menu:
     - name: Blog
       weight: 3
       pageRef: /blog
-    - name: Search
+    - name: Enterprise
       weight: 4
+      pageRef: /enterprise
+    - name: Search
+      weight: 5
       params:
         type: search
     - name: GitHub
-      weight: 5
+      weight: 6
       url: "https://github.com/spegel-org/spegel"
       params:
         icon: github
