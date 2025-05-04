@@ -27,7 +27,7 @@ kind: Namespace
 metadata:
   name: spegel
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: spegel
@@ -37,7 +37,7 @@ spec:
   interval: 5m0s
   url: oci://ghcr.io/spegel-org/helm-charts
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: spegel
