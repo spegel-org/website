@@ -34,46 +34,63 @@ benchmark analyze --path $RESULT
 
 The results are compared to the [baseline results](https://github.com/spegel-org/benchmark-results/tree/main/results/baseline) which have been measured with the same setup but without Spegel running in the cluster.
 
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+<script>
+
+  const benchmarks = [
+    "10MB-1",
+    "10MB-4",
+    "100MB-1",
+    "100MB-4",
+    "1GB-1",
+    "1GB-4",
+  ];
+
+  const baseUrl = "https://raw.githubusercontent.com/spegel-org/benchmark-results/main/charts/";
+
+  benchmarks.forEach(name => {
+    fetch(`${baseUrl}${name}.json`)
+      .then(res => {
+        if (!res.ok) throw new Error(`Failed to load ${name}.json`);
+        return res.json();
+      })
+      .then(option => {
+        const el = document.getElementById(name);
+        if (el) {
+          const chart = echarts.init(el);
+          chart.setOption(option);
+        } else {
+          console.warn(`Element #${name} not found`);
+        }
+      })
+      .catch(err => console.error(err));
+  });
+</script>
+
+
 {{< nesteddetails title="10 MB in 1 layer" closed="true" >}}
-  {{< cards cols="1" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/10MB-1.png" title="Baseline" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/10MB-1.png" title="Spegel" >}}
-  {{< /cards >}}
+  <div id="10MB-1" style="width: 100%; height: 500px;"></div>
 {{< /nesteddetails >}}
 
 {{< nesteddetails title="10 MB in 4 layers" closed="true" >}}
-  {{< cards cols="1" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/10MB-4.png" title="Baseline" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/10MB-4.png" title="Spegel" >}}
-  {{< /cards >}}
+  <div id="10MB-4" style="width: 100%; height: 500px;"></div>
 {{< /nesteddetails >}}
 
 {{< nesteddetails title="100 MB in 1 layer" closed="true" >}}
-  {{< cards cols="1" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/100MB-1.png" title="Baseline" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/100MB-1.png" title="Spegel" >}}
-  {{< /cards >}}
+  <div id="100MB-1" style="width: 100%; height: 500px;"></div>
 {{< /nesteddetails >}}
 
 {{< nesteddetails title="100 MB in 4 layers" closed="true" >}}
-  {{< cards cols="1" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/100MB-4.png" title="Baseline" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/100MB-4.png" title="Spegel" >}}
-  {{< /cards >}}
+  <div id="100MB-4" style="width: 100%; height: 500px;"></div>
 {{< /nesteddetails >}}
 
 {{< nesteddetails title="1 GB in 1 layer" closed="true" >}}
-  {{< cards cols="1" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/1GB-1.png" title="Baseline" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/1GB-1.png" title="Spegel" >}}
-  {{< /cards >}}
+  <div id="1GB-1" style="width: 100%; height: 500px;"></div>
 {{< /nesteddetails >}}
 
 {{< nesteddetails title="1 GB in 4 layers" closed="true" >}}
-  {{< cards cols="1" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/baseline/1GB-4.png" title="Baseline" >}}
-    {{< card image="https://raw.githubusercontent.com/spegel-org/benchmark-results/refs/heads/main/results/spegel/v0.0.27/1GB-4.png" title="Spegel" >}}
-  {{< /cards >}}
+  <div id="1GB-4" style="width: 100%; height: 500px;"></div>
 {{< /nesteddetails >}}
 
 ## Analysis
