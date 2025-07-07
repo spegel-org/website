@@ -87,3 +87,7 @@ helm upgrade --create-namespace --namespace spegel --install spegel-two oci://gh
 ## Why are default memory requests and limits set in the Helm chart?
 
 Linux file reading relies on the VFS cache, which keeps file chunks in memory for efficiency. In a containerized environment, VFS cache usage contributes to the container's memory consumption. Since VFS cache is only cleared under memory pressure, Spegel may appear to consume increasing amounts of memory until it reaches the available memory on the node. To prevent excessive memory usage, the Helm chart sets a default memory limit of 128Mi, ensuring that the cache is cleared when necessary.
+
+## Does Spegel support OCI volumes?
+
+Yes OCI volumes are supported by Spegel, as it uses the CRI API in a similar way as container images are pulled. It does require that you are using a Kubernetes and Containerd version that supports OCI volumes.
