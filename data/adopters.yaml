@@ -12,9 +12,12 @@ companies:
   - name: Nemlig
     link: https://www.nemlig.com/
     image: /images/logos/nemlig.svg
-  - name: Xenit AB
-    link: https://xenit.se
-    image: /images/logos/xenit.png
   - name: Pipekit
     link: https://pipekit.io
     image: /images/logos/pipekit.png
+  - name: Predibase
+    link: https://predibase.com/
+    image: /images/logos/predibase.svg
+  - name: Xenit AB
+    link: https://xenit.se
+    image: /images/logos/xenit.png
