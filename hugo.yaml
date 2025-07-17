@@ -44,6 +44,7 @@ params:
     displayPoweredBy: true
   page:
     width: wide
+  description: "Open source stateless cluster-local OCI registry mirror for Kubernetes. Spegel speeds up container image pulls, reduces egress costs, and improves reliability by caching images across nodes."
 markup:
   goldmark:
     renderer:
