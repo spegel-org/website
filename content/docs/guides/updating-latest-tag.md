@@ -49,12 +49,18 @@ webhooks:
   timeoutSeconds: 15
 ```
 
-The second option, which should be used only if using k8s-digester is not possible, is to disable tag resolving altogether in Spegel. There are two options when doing this. It can either be disabled only for `latest` tags or for all tags. This can be done by changing the Helm charts values from their defaults.
+The second option, which should be used only if using k8s-digester is not possible, is to either filter out mirroring for reused tags or to disable tag resolution completely. Please note that this does however remove Spegel's ability to protect against registry outages for any images referenced by tags.
+
+Add the following filter to ignore all requests for images that contain the `:latest` tag. If the tag has not changed and the image is present within the cluster the image will still be served from within the cluster. 
+
+```yaml
+spegel:
+  registryFilters:
+    - :latest$
+```
+Finally to completely disable tag resolving update the values file with the following configuration.
 
 ```yaml
 spegel:
   resolveTags: false
-  resolveLatestTag: false
 ```
-
-Please note that this does however remove Spegel's ability to protect against registry outages for any images referenced by tags.
