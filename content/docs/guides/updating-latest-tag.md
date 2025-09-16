@@ -1,5 +1,5 @@
 ---
-title: Updating latest tag
+title: Updating Latest Tag
 description: How to update images reusing tags.
 ---
 
