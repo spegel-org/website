@@ -74,6 +74,7 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | --- | --- |
 | :green_circle: | [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) |
 | :green_circle: | [Minikube](https://minikube.sigs.k8s.io/docs/) |
+| :green_circle: | [Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/) |
 | :yellow_circle: | [EKS](https://aws.amazon.com/eks/) |
 | :yellow_circle: | [K0S](https://k0sproject.io/) |
 | :yellow_circle: | [K3S](https://k3s.io/) and [RKE2](https://docs.rke2.io/) |
