@@ -200,7 +200,7 @@ spegel:
   containerdRegistryConfigPath: /etc/cri/conf.d/hosts
 ```
 
-Talos comes with Pod Security Admission [pre-configured](https://www.talos.dev/latest/kubernetes-guides/configuration/pod-security/). The default profile is too restrictive and needs to be changed to privileged.
+Talos comes with Pod Security Admission [pre-configured](https://www.talos.dev/latest/kubernetes-guides/configuration/pod-security/). The default Talos security profile is too restrictive to allow Spegel to operate, therefore it's necessary to adjust the security profile of the Spegel namespace.
 
 ```shell
 kubectl label namespace spegel pod-security.kubernetes.io/enforce=privileged
