@@ -19,7 +19,7 @@ Whether you're new to Spegel or a long-time contributor, your input is valuable.
 
 <ul>
   <li><a target="_blank" href="https://hackmd.io/@spegel/r19HI0uqkl">Agenda</a></li>
-  <li><a target="_blank" href="https://meet.google.com/yaq-egiv-hbn">Google Meets</a></li>
-  <li><a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NTlhaGc3ZG51aWQ2anNsdTVvODJrMGNqajVfMjAyNTAyMjVUMTYwMDAwWiBwaGlsaXAubGFpbmVAbQ&tmsrc=philip.laine%40gmail.com&scp=ALL">Calendar</a></li>
+  <li><a target="_blank" href="https://meet.google.com/ohm-xbnv-gow">Google Meets</a></li>
+  <li><a target="_blank" href="https://calendar.google.com/calendar/u/0?cid=NGRiMDg0YTZhNWU1ODgwZTJhNGRhNjgzMDFmNTM4YzlkZDBiNmUxZDQyYjQ2OTRlOGQzYzg3OWZkMGY5NmY2OUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t">Calendar</a></li>
 </ul>
 
