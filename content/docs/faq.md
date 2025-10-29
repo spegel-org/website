@@ -44,11 +44,11 @@ Additionally, Spegel would have no method of validating the credentials even if 
 ## How do I use Spegel in conjunction with another registry cache?
 
 Spegel can be used with other registry caches in cases where the best effort caching offered by Spegel is not enough. In these situations, if the image is not cached within the cluster the image should be pulled from the secondary cache.
-This is configured by adding the domain of the registry to the `additionalMirrorRegistries` list in the Helm values. Registries added to this list will be included in the mirror configuration created by Spegel.
+This is configured by adding the domain of the registry to the `additionalMirrorTargets` list in the Helm values. Registries added to this list will be included in the mirror configuration created by Spegel.
 
 ```yaml
 spegel:
-  additionalMirrorRegistries:
+  additionalMirrorTargets:
     - https://zot.example.com
 ```
 
