@@ -12,6 +12,9 @@ companies:
   - name: Nemlig
     link: https://www.nemlig.com/
     image: /images/logos/nemlig.svg
+  - name: Nscale
+    link: https://www.nscale.com/
+    image: /images/logos/nscale.png
   - name: Pipekit
     link: https://pipekit.io
     image: /images/logos/pipekit.png
