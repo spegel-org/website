@@ -115,6 +115,8 @@ EOL
 If you are using an AL2023-based EKS AMI, bootstrap involves [nodeadm configuration](https://awslabs.github.io/amazon-eks-ami/nodeadm/). To change containerd settings, you should add a
 nodeadm configuration section.
 
+#### <= 1.31 (containerd v1)
+
 ```yaml
 ...
 --MIMEBOUNDARY
@@ -130,6 +132,30 @@ spec:
     config: |
       [plugins."io.containerd.grpc.v1.cri".containerd]
       discard_unpacked_layers = false
+
+--MIMEBOUNDARY
+...
+```
+
+#### >= 1.32 (containerd v2)
+
+```yaml
+...
+--MIMEBOUNDARY
+Content-Transfer-Encoding: 7bit
+Content-Type: application/node.eks.aws
+Mime-Version: 1.0
+
+---
+apiVersion: node.eks.aws/v1alpha1
+kind: NodeConfig
+spec:
+  containerd:
+    config: |
+      [plugins.'io.containerd.cri.v1.images']
+      discard_unpacked_layers = false
+      [plugins."io.containerd.cri.v1.images".registry]
+      config_path = "/etc/containerd/certs.d"
 
 --MIMEBOUNDARY
 ...
