@@ -24,3 +24,6 @@ companies:
   - name: Xenit AB
     link: https://xenit.se
     image: /images/logos/xenit.png
+  - name: Sisense
+    link: https://www.sisense.com/
+    image: /images/logos/sisense.svg
