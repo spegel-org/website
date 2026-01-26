@@ -87,42 +87,14 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 
 ### EKS
 
-Discard unpacked layers is enabled by default, meaning that layers that are not required for the container runtime will be removed after consumed.
-This needs to be disabled as otherwise all of the required layers of an image would not be present on the node.
-
-#### Amazon Linux 2
-
-If your EKS AMI is based on AL2, the included containerd config [imports overrides](https://github.com/awslabs/amazon-eks-ami/blob/main/templates/al2/runtime/containerd-config.toml)
-from `/etc/containerd/config.d/*.toml` by default. The best way to change containerd settings is to add a file to the import directory using a custom node bootstrap script in your launch template.
-
-```shell
-#!/bin/bash
-set -ex
-
-mkdir -p /etc/containerd/config.d
-cat > /etc/containerd/config.d/spegel.toml << EOL
-[plugins."io.containerd.grpc.v1.cri".registry]
-   config_path = "/etc/containerd/certs.d"
-[plugins."io.containerd.grpc.v1.cri".containerd]
-   discard_unpacked_layers = false
-EOL
-
-/etc/eks/bootstrap.sh
-```
-
-#### Amazon Linux 2023
-
-If you are using an AL2023-based EKS AMI, bootstrap involves [nodeadm configuration](https://awslabs.github.io/amazon-eks-ami/nodeadm/). To change containerd settings, you should add a
-nodeadm configuration section.
-
-#### <= 1.31 (containerd v1)
+Discard unpacked layers is enabled by default, meaning that layers that are not required for the container runtime will be removed after consumed. This needs to be disabled as otherwise all of the required layers of an image would not be present on the node. AL2023 based EKS AMIs allows customization of Containerd using [nodeadm configuration](https://awslabs.github.io/amazon-eks-ami/nodeadm/).
 
 ```yaml
-...
---MIMEBOUNDARY
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY"
+
+--BOUNDARY
 Content-Type: application/node.eks.aws
-Mime-Version: 1.0
 
 ---
 apiVersion: node.eks.aws/v1alpha1
@@ -130,35 +102,12 @@ kind: NodeConfig
 spec:
   containerd:
     config: |
-      [plugins."io.containerd.grpc.v1.cri".containerd]
-      discard_unpacked_layers = false
-
---MIMEBOUNDARY
-...
-```
-
-#### >= 1.32 (containerd v2)
-
-```yaml
-...
---MIMEBOUNDARY
-Content-Transfer-Encoding: 7bit
-Content-Type: application/node.eks.aws
-Mime-Version: 1.0
-
----
-apiVersion: node.eks.aws/v1alpha1
-kind: NodeConfig
-spec:
-  containerd:
-    config: |
-      [plugins.'io.containerd.cri.v1.images']
-      discard_unpacked_layers = false
       [plugins."io.containerd.cri.v1.images".registry]
-      config_path = "/etc/containerd/certs.d"
+        config_path = "/etc/containerd/certs.d"
+      [plugins.'io.containerd.cri.v1.images']
+        discard_unpacked_layers = false
 
---MIMEBOUNDARY
-...
+--BOUNDARY--
 ```
 
 ### K0S
