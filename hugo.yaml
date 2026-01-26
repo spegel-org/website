@@ -13,9 +13,9 @@ menu:
     - name: Blog
       weight: 3
       pageRef: /blog
-    - name: Support
+    - name: Enterprise
       weight: 4
-      pageRef: /support
+      pageRef: /enterprise
     - name: Search
       weight: 5
       params:

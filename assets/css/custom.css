@@ -1,0 +1,4 @@
+.content :where(table):not(:where(.hextra-code-block table,[class~=not-prose],[class~=not-prose] *)) {
+  display: table;
+}
+

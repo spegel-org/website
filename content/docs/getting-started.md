@@ -70,20 +70,20 @@ version = 2
 
 Spegel has been tested on the following Kubernetes distributions for compatibility. Green status means Spegel will work out of the box, yellow will require additional configuration, and red means that Spegel will not work.
 
-| Status          | Distribution                                                           |
-|-----------------|------------------------------------------------------------------------|
-| :green_circle:  | [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service)   |
-| :green_circle:  | [Minikube](https://minikube.sigs.k8s.io/docs/)                         |
-| :green_circle:  | [Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/)             |
-| :green_circle:  | [NKP](https://www.nutanix.com/products/kubernetes-management-platform) |
-| :yellow_circle: | [EKS](https://aws.amazon.com/eks/)                                     |
-| :yellow_circle: | [K0S](https://k0sproject.io/)                                          |
-| :yellow_circle: | [K3S](https://k3s.io/) and [RKE2](https://docs.rke2.io/)               |
-| :yellow_circle: | [Kind](https://kind.sigs.k8s.io/)                                      |
-| :yellow_circle: | [Talos](https://www.talos.dev/)                                        |
-| :yellow_circle: | [VKE](https://www.volcengine.com/product/vke)                          |
-| :red_circle:    | [GKE](https://cloud.google.com/kubernetes-engine)                      |
-| :red_circle:    | [DigitalOcean](https://www.digitalocean.com/products/kubernetes)       |
+| Distribution | Status |
+| :--- | :---: |
+| [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service)   | :green_circle:  |
+| [Minikube](https://minikube.sigs.k8s.io/docs/)                         | :green_circle:  |
+| [Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/)             | :green_circle:  |
+| [NKP](https://www.nutanix.com/products/kubernetes-management-platform) | :green_circle:  |
+| [EKS](https://aws.amazon.com/eks/)                                     | :yellow_circle: |
+| [K0S](https://k0sproject.io/)                                          | :yellow_circle: |
+| [K3S](https://k3s.io/) and [RKE2](https://docs.rke2.io/)               | :yellow_circle: |
+| [Kind](https://kind.sigs.k8s.io/)                                      | :yellow_circle: |
+| [Talos](https://www.talos.dev/)                                        | :yellow_circle: |
+| [VKE](https://www.volcengine.com/product/vke)                          | :yellow_circle: |
+| [GKE](https://cloud.google.com/kubernetes-engine)                      | :red_circle:    |
+| [DigitalOcean](https://www.digitalocean.com/products/kubernetes)       | :red_circle:    |
 
 ### EKS
 
