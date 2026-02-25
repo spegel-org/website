@@ -27,3 +27,6 @@ companies:
   - name: Sisense
     link: https://www.sisense.com/
     image: /images/logos/sisense.svg
+  - name: Chia Network
+    link: https://www.chia.net/
+    image: /images/logos/chianetwork.png
