@@ -126,18 +126,12 @@ spegel:
   containerdMirrorAdd: false
 ```
 
-Below you can find an example of a bootstrap container configuration that adds a mirror to the Containerd configuration which points all registries to a Spegel NodePort:
+Below you can find an example of a bootstrap container configuration that detects the node IP and adds a mirror to the Containerd configuration which points all registries to a Spegel NodePort:
 ```bash
 #!/bin/sh
-apiclient set --json '{
-  "container-registry": {
-    "mirrors": {
-      "*": [
-        "http://127.0.0.1:30021"
-      ]
-    }
-  }
-}'
+IP="$(awk '/32 host/ { print f } { f=$2 }' /proc/net/fib_trie | grep -v '127.0.0.1' | head -n1)"
+[ -n "$IP" ] || exit 1
+apiclient set --json "{\"container-registry\":{\"mirrors\":{\"*\":[\"http://$IP:30021\"]}}}"
 ```
 
 Bottlerocket comes with Containerd configured Discard unpacked layers to false by default.
