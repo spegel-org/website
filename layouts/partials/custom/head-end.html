@@ -3,3 +3,22 @@
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
   data-cf-beacon='{"token": "133fbcdf00764c4e96699e9890d3d05c"}'></script>
 {{- end }}
+
+<script>
+  (function () {
+    const ref = document.referrer;
+    if (!ref) return;
+    console.log(ref)
+    const url = URL.parse(ref)
+
+    const target = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    const redirectReferrers = [
+      "chainguard.dev",
+    ];
+
+    const matches = redirectReferrers.some(r => url.host.endsWith(r));
+    if (matches) {
+      window.location.replace(target);
+    }
+  })();
+</script>
