@@ -131,7 +131,15 @@ Below you can find an example of a bootstrap container configuration that detect
 #!/bin/sh
 IP="$(awk '/32 host/ { print f } { f=$2 }' /proc/net/fib_trie | grep -v '127.0.0.1' | head -n1)"
 [ -n "$IP" ] || exit 1
-apiclient set --json "{\"container-registry\":{\"mirrors\":{\"*\":[\"http://$IP:30021\"]}}}"
+apiclient set --json "{
+  \"container-registry\": {
+    \"mirrors\": {
+      \"*\": [
+        \"http://$IP:30021\"
+      ]
+    }
+  }
+}"
 ```
 
 Bottlerocket comes with Containerd configured Discard unpacked layers to false by default.
