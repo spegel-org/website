@@ -88,6 +88,8 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 
 ### EKS
 
+#### AL2023
+
 Discard unpacked layers is enabled by default, meaning that layers that are not required for the container runtime will be removed after consumed. This needs to be disabled as otherwise all of the required layers of an image would not be present on the node. AL2023 based EKS AMIs allows customization of Containerd using [nodeadm configuration](https://awslabs.github.io/amazon-eks-ami/nodeadm/).
 
 ```yaml
@@ -110,6 +112,37 @@ spec:
 
 --BOUNDARY--
 ```
+
+#### Bottlerocket v1.56+
+
+Starting with Bottlerocket v1.56, Containerd image mirroring can be configured natively.
+
+Bottlerocket does not allow to modify the Containerd configuration after the AMI has been deployed. It uses a [bootstrap container](https://bottlerocket.dev/en/os/1.54.x/concepts/bootstrap-containers/) to modify the configuration. 
+
+This leads to disabling mirror adding in Spegel:
+
+```yaml
+spegel:
+  containerdMirrorAdd: false
+```
+
+Below you can find an example of a bootstrap container configuration that detects the node IP and adds a mirror to the Containerd configuration which points all registries to a Spegel NodePort:
+```bash
+#!/bin/sh
+IP="$(awk '/32 host/ { print f } { f=$2 }' /proc/net/fib_trie | grep -v '127.0.0.1' | head -n1)"
+[ -n "$IP" ] || exit 1
+apiclient set --json "{
+  \"container-registry\": {
+    \"mirrors\": {
+      \"*\": [
+        \"http://$IP:30021\"
+      ]
+    }
+  }
+}"
+```
+
+Bottlerocket comes with Containerd configured Discard unpacked layers to false by default.
 
 ### K0S
 
