@@ -60,12 +60,12 @@ This requires Containerd to be properly configured, if it is not Spegel will exi
 Some Kubernetes flavors come with this setting out of the box, while others do not. Spegel is not able to write this configuration for you as it requires a restart of Containerd to take effect.
 
 ```toml {filename="/etc/containerd/config.toml"}
-version = 2
+version = 3
 
-[plugins."io.containerd.grpc.v1.cri".registry]
-   config_path = "/etc/containerd/certs.d"
-[plugins."io.containerd.grpc.v1.cri".containerd]
-   discard_unpacked_layers = false
+[plugins."io.containerd.cri.v1.images".registry]
+  config_path = "/etc/containerd/certs.d"
+[plugins."io.containerd.cri.v1.images"]
+  discard_unpacked_layers = false
 ```
 
 Spegel has been tested on the following Kubernetes distributions for compatibility. Green status means Spegel will work out of the box, yellow will require additional configuration, and red means that Spegel will not work.
@@ -113,24 +113,21 @@ spec:
 --BOUNDARY--
 ```
 
-#### Bottlerocket v1.56+
+#### Bottlerocket
 
-Starting with Bottlerocket v1.56, Containerd image mirroring can be configured natively.
+Bottlerocket does not allow to modify the Containerd configuration after the AMI has been deployed. [Bootstrap containers](https://bottlerocket.dev/en/os/1.54.x/concepts/bootstrap-containers/) are used to modify the host configuration.
 
-Bottlerocket does not allow to modify the Containerd configuration after the AMI has been deployed. It uses a [bootstrap container](https://bottlerocket.dev/en/os/1.54.x/concepts/bootstrap-containers/) to modify the configuration. 
+> [!IMPORTANT]
+> Contianerd mirror configuration requires Bottlerocket v1.56 or later.
 
-This leads to disabling mirror adding in Spegel:
+Below you can find an example of a bootstrap container configuration that detects the node IP and adds a mirror to the Containerd configuration which points all registries to Spegel.
 
-```yaml
-spegel:
-  containerdMirrorAdd: false
-```
-
-Below you can find an example of a bootstrap container configuration that detects the node IP and adds a mirror to the Containerd configuration which points all registries to a Spegel NodePort:
-```bash
+```shell
 #!/bin/sh
+
 IP="$(awk '/32 host/ { print f } { f=$2 }' /proc/net/fib_trie | grep -v '127.0.0.1' | head -n1)"
 [ -n "$IP" ] || exit 1
+
 apiclient set --json "{
   \"container-registry\": {
     \"mirrors\": {
@@ -142,17 +139,24 @@ apiclient set --json "{
 }"
 ```
 
-Bottlerocket comes with Containerd configured Discard unpacked layers to false by default.
+Disable Spegel writing mirror configuration as it is already done in the bootstrap container.
+
+```yaml
+spegel:
+  containerdMirrorAdd: false
+```
 
 ### K0S
 
 As K0S packages its own Containerd some paths will be different than the standard defaults. First of all the Containerd configuration needs to be appended to. The following configuration must be written to `/etc/k0s/containerd.d/spegel.toml` before K0S starts for the configuration to be picked up.
 
 ```toml {filename="/etc/k0s/containerd.d/spegel.toml"}
-[plugins."io.containerd.grpc.v1.cri".registry]
-   config_path = "/etc/containerd/certs.d"
-[plugins."io.containerd.grpc.v1.cri".containerd]
-   discard_unpacked_layers = false
+version = 3
+
+[plugins."io.containerd.cri.v1.images".registry]
+  config_path = "/etc/containerd/certs.d"
+[plugins."io.containerd.cri.v1.images"]
+  discard_unpacked_layers = false
 ```
 
 After K0S has started Spegel can be installed with the slight modified values as the Containerd socket and content path will be different.
