@@ -6,7 +6,7 @@ aliases:
 
 ![Kvick Logo](./images/logos/kvick.png)
 
-Spegel powers production deployments at scale. [Kvick](kvick.dev) is the enterprise solution for organizations that demand advanced features, dedicated support, and the reliability required for mission-critical infrastructure.
+Spegel powers production deployments at scale. <a href="https://kvick.dev" target="_blank">Kvick</a> is the enterprise solution for organizations that demand advanced features, dedicated support, and the reliability required for mission-critical infrastructure.
 
 ## The Enterprise Value
 
@@ -28,4 +28,4 @@ Spegel powers production deployments at scale. [Kvick](kvick.dev) is the enterpr
 
 ## Get Started with Kvick
 
-Ready to optimize your container infrastructure? Visit [kvick.dev](https://kvick.dev) to learn more and explore pricing, or reach out directly at [contact@kvick.dev](mailto:contact@kvick.dev) to discuss how Kvick can reduce your costs and improve deployment speeds.
+Ready to optimize your container infrastructure? Visit <a href="https://kvick.dev" target="_blank">kvick.dev</a> to learn more and explore pricing, or reach out directly at [contact@kvick.dev](mailto:contact@kvick.dev) to discuss how Kvick can reduce your costs and improve deployment speeds.

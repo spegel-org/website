@@ -1,21 +1,8 @@
 ---
 title: FAQ
 type: docs
-weight: 6
+weight: 5
 ---
-
-## Can I use Spegel in production?
-
-Spegel is being used by multiple users in production for over a year without any major issues. The great thing is that pulling images would not stop working if you for some reason would find an issue with Spegel.
-A fallback to the original registry will always occur if Spegel can't be reached or serve the requested image.
-
-## What performance increase can I expect with Spegel?
-
-Read the [benchmark documentation](/docs/benchmark/) for information of expected gains.
-
-## How do I know that Spegel is working? 
-
-Read the [verifying Spegel is working](/docs/guides/verifying-spegel-is-working/) guide.
 
 ## Will image pulls break or be delayed if a spegel instance fails or is removed?
 
@@ -24,10 +11,6 @@ Spegel acts as a best-effort cache and the worst-case scenario is always that im
 However, should a spegel instance fail (perhaps because the node died), there will be a time interval when its images remain advertised. Currently, spegel advertises images with a TTL of 10 minutes. Other spegel peers may try to forward requests to the failed instance, delaying the response to the pulling client. In benign scenarios, this delay is the length of an intra-cluster round trip (the HTTP request and an ICMP unreachable response), likely <1ms. Of course, there are less benign scenarios (e.g. inter-node packet loss) where no replies will come back and spegel's forwarder will eventually time out before moving on to the next available peer. Spegel uses the standard library's httputil.ReverseProxy to forward requests, which in turn depends on DefaultTransport to decide how long to wait before giving up.
 
 Please note that a client is likely to request several layers in parallel and in many cases the advertising instances will have a similar routing distance, so spegel will spread its forwards across those instances. Thus, the benign scenario is unlikely to impact pod startup time. Only when the routing distance is different (e.g. edge locations) or when an image dominated by one large layer is affected is pod startup time materially increased.
-
-## Why am I not able to pull the new version of my tagged image?
-
-Read the [updating latest tag](/docs/guides/updating-latest-tag/) guide.
 
 ## Why am I able to pull private images without image pull secrets?
 
@@ -55,12 +38,6 @@ spegel:
 ## Why is my node running out of disk space?
 
 By default the kubelet on every node is configured to [garbage collect](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#containers-images) unused images when the disk space starts to run out. Some Kubernetes clusters come with image garbage collection disabled by default. This can cause a nodes disk to fill up quickly, especially on nodes with small disks to begin with. Spegel does not have a built in garbage collection instead it depends completely on the kubelt garbage collection being properly configured.
-
-## What should I do if other pods are scheduled on new nodes before Spegel?
-
-The Kubernetes scheduler will assign pods to nodes as soon as the node reports as ready. This causes a race to schedule and start Spegel on any new node, before other pods are scheduled. If this does not happen the mirror configuration will not be written to the node before the node starts pulling images for other new pods scheduled on it. Defeating the purpose of Spegel in this scenario. This problem is not unique to Spegel, but is a wider problem in Kubernetes for critical daemonsets. There are two closed KEPs [#1003](https://github.com/kubernetes/enhancements/pull/1003) and [#75890](https://github.com/kubernetes/kubernetes/issues/75890) which attempted to solve this without being accepted.
-
-The best solution to address this problem currently is to use [nidhogg](https://github.com/pelotech/nidhogg) to taint nodes which are not running pods from specific daemonsets. It implements for the most part the features suggested in both KEPs. Ensuring that all image pulls go through Spegel, even on new nodes.
 
 ## Can I deploy multiple Spegel clusters?
 
