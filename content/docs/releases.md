@@ -1,7 +1,7 @@
 ---
 title: Releases
 type: docs
-weight: 7
+weight: 6
 ---
 
 Spegel is distributed as both precompiled standalone binaries and Docker images. Releases are provided for the amd64, arm64, and armv7 architectures.
@@ -10,7 +10,7 @@ The Docker images are published to the GitHub Container Registry within the speg
 
 Release binaries are available on the [Spegel releases page](https://github.com/spegel-org/spegel/releases), where you can download the version suited to your platform.
 
-## Versioning 
+## Versioning
 
 Spegel follows the [Semantic Versioning (SemVer)](https://semver.org/) convention, using the pattern `vX.Y.Z` where:
 

@@ -1,6 +1,6 @@
 ---
 title: Architecture
-weight: 3
+weight: 4
 ---
 
 Spegel can run as a stateless application by exploiting the fact that an image pulled by a node is not immediately garbage collected. Spegel is deployed as a Daemonset on each node which acts as both the registry and mirror. Each instance is reachable both locally through a host port and a Service. This enables Containerd to be configured to use the localhost interface as a registry mirror and for Spegel instances to forward requests to each other.
@@ -32,14 +32,14 @@ graph TB
             SP1 <-->|interacts| CD1
             CD1 -->|fallback| ER
         end
-        
+
         subgraph "Node 2"
             SP2["Spegel Pod"]
             CD2["Containerd"]
             SP2 <-->|interacts| CD2
             CD2 -->|fallback| ER
         end
-        
+
         subgraph "Node 3"
             SP3["Spegel Pod"]
             CD3["Containerd"]
@@ -81,7 +81,7 @@ graph TB
         end
 
         CD[Containerd Client]
-        
+
         RH --> P2P
         ST --> P2P
         CD --> ST
@@ -113,7 +113,7 @@ sequenceDiagram
 
     CD->>SR: GET /v2/{name}/manifests/{ref}
     SR->>P2P: Resolve(key, allowSelf, retries)
-    
+
     alt Peer Found
         P2P-->>SR: Return Peer Address
         SR->>PR: Request Content
@@ -138,7 +138,7 @@ sequenceDiagram
     participant N2 as Node 2
     participant N3 as Node 3
     participant LE as Leader Election
-    
+
     Note over N1,LE: 10s lease duration
     Note over N1,LE: 5s renew deadline
     Note over N1,LE: 2s retry period
@@ -152,7 +152,7 @@ sequenceDiagram
     N1->>N2: Share Peer List
     N1->>N3: Share Peer List
     N2->>N3: Establish P2P Connection
-    
+
     Note over N1,N3: P2P Network Formed
 ```
 
@@ -174,12 +174,12 @@ sequenceDiagram
     loop Every 9 minutes
         ST->>CD: List Images
         CD-->>ST: Image List
-        
+
         loop For each image
             ST->>P2P: Advertise(image_keys)
             P2P->>DHT: Provide(keys)
         end
-        
+
         ST->>MT: Update Metrics
     end
 
@@ -202,17 +202,17 @@ sequenceDiagram
 
     SR->>P2P: Resolve(content_key)
     P2P->>DHT: FindProviders(key)
-    
+
     par Parallel Resolution
         DHT-->>P2P: Found Peer 1
         DHT-->>P2P: Found Peer 2
     end
 
     P2P->>SR: Return First Available Peer
-    
+
     Note over SR,PR2: Default 20ms timeout
     Note over SR,PR2: 3 retry attempts
-    
+
     alt Try Peer 1
         SR->>PR1: Request Content
         PR1-->>SR: Stream Content
@@ -234,7 +234,7 @@ graph LR
         P[Peers]
         ER[External Registry]
         CS[Content Store]
-        
+
         CD -->|Request| SP
         SP -->|Check| P
         P -->|Content| SP
@@ -249,7 +249,7 @@ graph LR
         P2P[P2P Network]
         DHT[DHT]
         ST[State Tracker]
-        
+
         P2P -->|Advertise| DHT
         DHT -->|Discover| P2P
         ST -->|Update| P2P
