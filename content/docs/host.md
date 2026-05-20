@@ -146,7 +146,7 @@ journalctl -u spegel.service --no-pager | grep "bootstrap completed connectivity
 Trigger a pull on one host, then confirm the mirror counter incremented:
 
 ```shell
-crictl pull ghcr.io/spegel-org/conformance:latest
+crictl pull ghcr.io/spegel-org/benchmark:v2-10MB-4
 curl -sf http://127.0.0.1:9090/metrics | grep spegel_mirror_requests_total
 ```
 
