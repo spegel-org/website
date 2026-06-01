@@ -142,7 +142,7 @@ spec:
 Bottlerocket does not allow to modify the Containerd configuration after the AMI has been deployed. [Bootstrap containers](https://bottlerocket.dev/en/os/1.54.x/concepts/bootstrap-containers/) are used to modify the host configuration.
 
 {{< callout type="important" >}}
-  Contianerd mirror configuration requires Bottlerocket v1.56 or later.
+  Containerd mirror configuration requires Bottlerocket v1.56 or later.
 {{< /callout >}}
 
 Below you can find an example of a bootstrap container configuration that detects the node IP and adds a mirror to the Containerd configuration which points all registries to Spegel.
