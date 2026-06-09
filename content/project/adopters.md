@@ -41,7 +41,7 @@ weight: 2
 </style>
 
 {{% adopters.inline %}}
-{{ $adopters := .Site.Data.adopters }}
+{{ $adopters := hugo.Data.adopters }}
 {{ $sections := slice "projects" "companies" }}
 {{ range $sections }}
 ## {{ . | humanize }}

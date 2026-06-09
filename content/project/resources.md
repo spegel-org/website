@@ -8,7 +8,7 @@ We’re happy to share resources contributed by the community. We hope you find 
 
 {{% resources.inline %}}
 
-{{ $resources := .Site.Data.resources }}
+{{ $resources := hugo.Data.resources }}
 
 {{ range $year := seq (now.Format "2006") -1 2023 }}
 ## {{ $year }}
