@@ -55,7 +55,7 @@ spec:
 
 ## Verify Deployment
 
-Spegel has a stateless distributed design that can make it hard to understand when it is functioning, especially after the first installation. The fallback mechanism means that if Spegel is not able to serve the image the pull will fallback to the upstream registry. Silencing any potential issues that may exist. Spegel does a couple of checks on startup to verify that any required configuration is correct, if it is not it will exit with an error. There may however exist other issues that Spegel may not catch, so a manual validation of the installation can be at time valuable.
+Spegel has a stateless distributed design that can make it hard to understand when it is functioning, especially after the first installation. The fallback mechanism means that if Spegel is not able to serve the image the pull will fallback to the upstream registry. Silencing any potential issues that may exist. Spegel does a couple of checks on startup to verify that any required configuration is correct, if it is not it will exit with an error. There may however exist other issues that Spegel may not catch, so a manual validation of the installation can be valuable at times.
 
 As Spegel serves images that have already been pulled by other nodes we want to trigger such an event to occur. We do this by creating pods using an image on two different nodes. When both pods have been created we can be assured that if Spegel is working properly the node that the second pod runs on will pull from the first node.
 
@@ -247,7 +247,7 @@ kubectl label namespace spegel pod-security.kubernetes.io/enforce=privileged
 
 ### VKE
 
-VKE CNI Cello [don't support](https://github.com/volcengine/cello/issues/15) setting hostPorts at the same range of `net.ipv4.ip_local_port_range`.
+VKE CNI Cello [doesn't support](https://github.com/volcengine/cello/issues/15) setting hostPorts at the same range of `net.ipv4.ip_local_port_range`.
 You can view the exact range by running `sysctl net.ipv4.ip_local_port_range` on your node.
 
 To workaround this issue, you need to set a custom hostPort when deploying spegel.

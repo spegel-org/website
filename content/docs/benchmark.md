@@ -3,7 +3,7 @@ title: Benchmark
 weight: 4
 ---
 
-Spegel is benchmarked using the [benchmark](https://github.com/spegel-org/benchmark). The tool creates pods in a cluster forcing image pulling, after all pods are running the tool with gather image pull metrics for each individual pod. The image is then updated causing a rolling update, which is configured to be 20% of the pods at a time. Once again the image pull time metric is gathered. These benchmarks are run as a suite for different image sizes and amount of layers. Refer to the [benchmark results](https://github.com/spegel-org/benchmark-results) for details about how to reproduce the results.
+Spegel is benchmarked using the [benchmark](https://github.com/spegel-org/benchmark). The tool creates pods in a cluster forcing image pulling, after all pods are running the tool will gather image pull metrics for each individual pod. The image is then updated causing a rolling update, which is configured to be 20% of the pods at a time. Once again the image pull time metric is gathered. These benchmarks are run as a suite for different image sizes and amount of layers. Refer to the [benchmark results](https://github.com/spegel-org/benchmark-results) for details about how to reproduce the results.
 
 ## Results
 
