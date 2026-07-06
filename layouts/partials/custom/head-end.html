@@ -6,16 +6,19 @@
 
 <script>
   (function () {
+    const target = "/vendor-notice/";
+    if (window.location.pathname === target) {
+      return
+    }
     const ref = document.referrer;
-    if (!ref) return;
-    console.log(ref)
+    if (!ref) {
+      return
+    }
     const url = URL.parse(ref)
-
-    const target = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     const redirectReferrers = [
       "chainguard.dev",
+      "saturncloud.io",
     ];
-
     const matches = redirectReferrers.some(r => url.host.endsWith(r));
     if (matches) {
       window.location.replace(target);
