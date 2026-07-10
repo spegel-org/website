@@ -10,7 +10,7 @@ params:
 
 Spegel’s journey began with its first commit in February 2023, sparked by a curiosity about OCI and Containerd, along with a challenge to explore alternative image distribution methods. In the two years since, it has evolved into a valuable tool for everyone from homelab enthusiasts to multinational corporations. Seeing the GitHub stars climb has been rewarding, a clear indicator that adoption is growing and people recognize its value.
 
-![Star History](/blog/spegel-v0-1-0/star-history.png)
+![Star History](./star-history.png)
 
 Since Spegel’s initial release, breaking changes have been avoided, and for the most part, the project has evolved smoothly. However, the time has come to address past missteps. The [v0.1.0 release](https://github.com/spegel-org/spegel/releases/tag/v0.1.0) marks an important milestone, enabling necessary changes while also committing to proper versioning and stability moving forward. It’s important to review the changelog to understand if these breaking changes might impact you. From here on, future releases will follow semantic versioning, with new features introduced through minor version increases. While this release could have come sooner, uncertainty in Spegel’s implementation made it challenging. But, as they say, better late than never.
 
@@ -30,7 +30,7 @@ Along with this change, several configuration values have been renamed for clari
 
 A challenge with Spegel has been gaining insights into its operation. New users often struggle to determine whether Spegel is working correctly. This is a significant issue. Until now, users have had to rely on container logs and HTTP status codes to figure out if an image was found and pulled successfully. To simplify this process, a new debug web UI has been added. It is disabled by default but can be easily enabled by setting `spegel.debugWebEnabled: true`. To access it, simply port forward to a Spegel pod on its metrics port and browse to `http://localhost:9090/debug/web`.
 
-![Debug Web](/blog/spegel-v0-1-0/debug-web.png)
+![Debug Web](./debug-web.png)
 
 While the features are still limited, you can already initiate an image pull from other Spegel nodes to check that images are found and pulled correctly. We welcome any feedback. If there is additional information that would help with troubleshooting, please consider creating an issue.
 
