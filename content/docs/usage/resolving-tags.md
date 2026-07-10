@@ -1,6 +1,11 @@
 ---
 title: Resolving Tags
-weight: 2
+weight: 1
+aliases:
+  - "/docs/usage/"
+  - "/docs/resolving-tags/"
+  - "/docs/guides/updating-latest-tag/"
+  - "/docs/guides/"
 ---
 
 {{< callout type="important" >}}
