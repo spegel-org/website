@@ -1,32 +1,44 @@
 projects:
   - name: K3S
     link: https://k3s.io
-    image: /images/logos/k3s.svg
+    image: /images/adopters/k3s.svg
   - name: RKE2
     link: https://docs.rke2.io
-    image: /images/logos/rke2.png
+    image: /images/adopters/rke2.png
 companies:
-  - name: National Research Platform
-    link: https://nationalresearchplatform.org/
-    image: /images/logos/nrp.webp
-  - name: Nemlig
-    link: https://www.nemlig.com/
-    image: /images/logos/nemlig.svg
-  - name: Nscale
-    link: https://www.nscale.com/
-    image: /images/logos/nscale.png
-  - name: Pipekit
-    link: https://pipekit.io
-    image: /images/logos/pipekit.png
-  - name: Predibase
-    link: https://predibase.com/
-    image: /images/logos/predibase.svg
-  - name: Xenit AB
-    link: https://xenit.se
-    image: /images/logos/xenit.png
-  - name: Sisense
-    link: https://www.sisense.com/
-    image: /images/logos/sisense.svg
   - name: Chia Network
     link: https://www.chia.net/
-    image: /images/logos/chianetwork.png
+    image: /images/adopters/chianetwork.png
+  - name: Cloud.ru
+    link: https://cloud.ru/
+    image: /images/adopters/cloudru.png
+  - name: Kognic
+    link: https://www.kognic.com/
+    image: /images/adopters/kognic.png
+  - name: Kvick
+    link: https://kvick.dev
+    image: /images/adopters/kvick.png
+  - name: National Research Platform
+    link: https://nationalresearchplatform.org/
+    image: /images/adopters/nrp.webp
+  - name: Nemlig
+    link: https://www.nemlig.com/
+    image: /images/adopters/nemlig.svg
+  - name: Nscale
+    link: https://www.nscale.com/
+    image: /images/adopters/nscale.png
+  - name: Pipekit
+    link: https://pipekit.io
+    image: /images/adopters/pipekit.png
+  - name: Rubrik
+    link: https://www.rubrik.com/
+    image: /images/adopters/rubrik.png
+  - name: Saturn Cloud
+    link: https://saturncloud.io/
+    image: /images/adopters/saturncloud.png
+  - name: Sisense
+    link: https://www.sisense.com/
+    image: /images/adopters/sisense.svg
+  - name: Xenit AB
+    link: https://xenit.se
+    image: /images/adopters/xenit.png

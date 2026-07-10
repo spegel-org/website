@@ -4,7 +4,7 @@ aliases:
   - /support/
 ---
 
-![Kvick Logo](./images/logos/kvick.png)
+![Kvick Logo](./images/adopters/kvick.png)
 
 Spegel powers production deployments at scale. <a href="https://kvick.dev" target="_blank">Kvick</a> is the enterprise solution for organizations that demand advanced features, dedicated support, and the reliability required for mission-critical infrastructure.
 
