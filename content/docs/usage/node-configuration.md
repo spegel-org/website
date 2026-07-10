@@ -1,6 +1,8 @@
 ---
 title: Node Configuration
 weight: 2
+aliases:
+  - "/docs/node-configuration/"
 ---
 
 Spegel depends on certain mirror configuration on each node to function. This configuration makes sure that requests go to the local Spegel instance on the node instead of the upstream registry. Out of the box, Spegel writes this configuration using an init container. Ensuring the configuration is there before the registry starts. While the solution is simple and frictionless it has some downsides. One of them being that the bootstrap process relies on the Spegel image to write the configuration in the first place. Creating a chicken and egg situation.

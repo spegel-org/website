@@ -1,6 +1,8 @@
 ---
 title: Getting Started
 weight: 1
+aliases:
+  - "/docs/guides/verifying-spegel-is-working/"
 ---
 
 Before deploying Spegel read the compatibility section to make sure that the Kubernetes flavor of your choosing is supported or requires specific configuration to work.
