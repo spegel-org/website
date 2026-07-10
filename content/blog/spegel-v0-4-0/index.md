@@ -38,7 +38,7 @@ It has been a long time coming, but we finally have a reasonable method of verif
 
 The debug web view is now enabled by default, serving the page on the same port as metrics and tracing. The debug web view has a new metric called last successful mirror which indicates if the Spegel instance has successfully served content. If the value is pending, it means that this has yet to occur.
 
-![Last Successful Mirror](/blog/spegel-v0-4-0/last-successful-mirror.png)
+![Last Successful Mirror](./last-successful-mirror.png)
 
 There is now a new [Verifying Spegel Is Working](https://spegel.dev/docs/guides/verifying-spegel-is-working/) guide which walks through how to force an image pull on a specific node and then verify that it was successfully mirrored by Spegel.
 
