@@ -1,6 +1,6 @@
 ---
 title: Local Cluster
-weight: 3
+weight: 4
 ---
 
 Spegel is designed for production Kubernetes clusters where images are shared between nodes using a stateless, best effort OCI registry mirror. It is optimized for reducing registry traffic, improving pull performance, and increasing resilience across many nodes.
