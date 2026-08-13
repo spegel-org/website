@@ -12,6 +12,9 @@ companies:
   - name: Cloud.ru
     link: https://cloud.ru/
     image: /images/adopters/cloudru.png
+  - name: DigitalOcean
+    link: https://www.digitalocean.com/
+    image: /images/adopters/digitalocean.png
   - name: Kognic
     link: https://www.kognic.com/
     image: /images/adopters/kognic.png
