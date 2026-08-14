@@ -263,8 +263,4 @@ service:
 
 ### GKE
 
-GKE does not set the registry config path in its Containerd configuration. On top of that it uses the old mirror configuration for the internal mirroring service.
-
-### DigitalOcean
-
-DigitalOcean does not set the registry config path in its Containerd configuration.
+GKE uses the default mirror configuration but discards unpacked layers. There is no simple way to override the configuration before Containerd starts.
