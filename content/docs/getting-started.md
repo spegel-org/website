@@ -100,6 +100,7 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | :--- | :---: |
 | [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service)   | :green_circle:  |
 | [CKS](https://docs.coreweave.com/products/cks)                         | :green_circle:  |
+| [DigitalOcean](https://www.digitalocean.com/products/kubernetes)       | :green_circle:  |
 | [Minikube](https://minikube.sigs.k8s.io/docs/)                         | :green_circle:  |
 | [Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/)             | :green_circle:  |
 | [NKP](https://www.nutanix.com/products/kubernetes-management-platform) | :green_circle:  |
@@ -110,7 +111,6 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | [Talos](https://www.talos.dev/)                                        | :yellow_circle: |
 | [VKE](https://www.volcengine.com/product/vke)                          | :yellow_circle: |
 | [GKE](https://cloud.google.com/kubernetes-engine)                      | :red_circle:    |
-| [DigitalOcean](https://www.digitalocean.com/products/kubernetes)       | :red_circle:    |
 
 ### EKS
 
