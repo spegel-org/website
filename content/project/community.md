@@ -1,7 +1,8 @@
 ---
 title: Community
-type: docs
 weight: 1
+aliases:
+  - /project/
 ---
 
 Spegel is an open project where everyone is welcome to contribute, discuss, and improve the tool. Whether you want to share ideas, report issues, or help with development, your input matters.

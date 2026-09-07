@@ -1,1 +1,8 @@
-<meta http-equiv="refresh" content="0; url=/project/community" />
+---
+cascade:
+  type: docs
+  params:
+    breadcrumbs: false
+build:
+  render: link
+---

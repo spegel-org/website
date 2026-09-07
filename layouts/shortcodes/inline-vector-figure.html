@@ -1,0 +1,10 @@
+{{ $svgFile := (path.Join (path.Dir .Page.File.Path) (.Get 0)) }}
+{{ $svg := os.ReadFile $svgFile }}
+{{ $svg := replaceRE `(<svg[^>]*)\swidth="[^"]*"` "$1" $svg }}
+  {{ $svg := replaceRE `(<svg[^>]*)\sheight="[^"]*"` "$1" $svg }}
+    {{ $svg := replaceRE `stroke="#[0-9a-fA-F]{3,6}"` `stroke="currentColor"` $svg }}
+    {{ $svg := replaceRE `(<text[^>]*)fill="#[0-9a-fA-F]{3,6}"` `${1}fill="currentColor"` $svg }}
+
+      <span style="max-width: 100%; display: block;">
+        {{ $svg | safeHTML }}
+      </span>

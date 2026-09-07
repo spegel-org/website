@@ -1,6 +1,5 @@
 ---
 title: Adopters
-type: docs
 toc: false
 weight: 2
 ---
