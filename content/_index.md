@@ -2,25 +2,25 @@
 toc: false
 ---
 
-<div class="hx:mt-6 hx:mb-6">
+<div class="hx:mt-6 hx:mb-4">
 {{< hextra/hero-headline >}}
   Stateless cluster local&nbsp;<br class="sm:hx-block hx-hidden" />OCI registry mirror
 {{< /hextra/hero-headline >}}
 </div>
 
-<div class="hx:mb-12">
+<div class="hx:mb-6">
 {{< hextra/hero-subtitle >}}
   Speed up container pulls and minimize downtime with a stateless peer-to-peer OCI registry mirror for efficient image distribution
 {{< /hextra/hero-subtitle >}}
 </div>
 
-<div class="hx:mb-6">
-{{< hextra/hero-button text="Get Started" link="/docs/getting-started/" style="background-color: #164577" >}}
+<div class="hx:mb-12">
+{{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
 </div>
 
 ![landscape](/images/overview.gif)
 
-<div class="hx-mt-6"></div>
+<div class="hx:mt-12"></div>
 
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
