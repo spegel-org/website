@@ -1,7 +1,7 @@
 ---
 title: Metrics
 type: docs
-weight: 4
+weight: 5
 ---
 
 | Name| Type | Labels |

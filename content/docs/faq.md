@@ -1,7 +1,7 @@
 ---
 title: FAQ
 type: docs
-weight: 5
+weight: 7
 ---
 
 ## Will image pulls break or be delayed if a spegel instance fails or is removed?

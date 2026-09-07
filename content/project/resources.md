@@ -1,6 +1,5 @@
 ---
 title: Resources
-type: docs
 weight: 3
 ---
 
