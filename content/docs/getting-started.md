@@ -152,7 +152,7 @@ Below you can find an example of a bootstrap container configuration that detect
 ```shell
 #!/bin/sh
 
-IP="$(awk '/32 host/ { print f } { f=$2 }' /proc/net/fib_trie | grep -v '127.0.0.1' | head -n1)"
+IP="$(awk '/32 host/ {if (f != "127.0.0.1") { print f; exit 0;  }} { f=$2 }' /proc/net/fib_trie)"
 [ -n "$IP" ] || exit 1
 
 apiclient set --json "{
