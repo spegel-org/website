@@ -5,6 +5,6 @@
     {{ $svg := replaceRE `stroke="#[0-9a-fA-F]{3,6}"` `stroke="currentColor"` $svg }}
     {{ $svg := replaceRE `(<text[^>]*)fill="#[0-9a-fA-F]{3,6}"` `${1}fill="currentColor"` $svg }}
 
-      <span style="max-width: 100%; display: block;">
+      <span style="max-width: 100%; display: block; margin-top: 0.75em">
         {{ $svg | safeHTML }}
       </span>
