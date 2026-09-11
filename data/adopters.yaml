@@ -12,6 +12,9 @@ companies:
   - name: Cloud.ru
     link: https://cloud.ru/
     image: /images/adopters/cloudru.png
+  - name: C.H. Robinson
+    link: www.chroninson.com
+    image: /images/adopters/chrobinson.png
   - name: DigitalOcean
     link: https://www.digitalocean.com/
     image: /images/adopters/digitalocean.png
