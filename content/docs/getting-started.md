@@ -105,12 +105,12 @@ Spegel has been tested on the following Kubernetes distributions for compatibili
 | [Kapsule](https://www.scaleway.com/en/kubernetes-kapsule/)             | :green_circle:  |
 | [NKP](https://www.nutanix.com/products/kubernetes-management-platform) | :green_circle:  |
 | [EKS](https://aws.amazon.com/eks/)                                     | :yellow_circle: |
+| [GKE](https://cloud.google.com/kubernetes-engine)                      | :yellow_circle:    |
 | [K0S](https://k0sproject.io/)                                          | :yellow_circle: |
 | [K3S](https://k3s.io/) and [RKE2](https://docs.rke2.io/)               | :yellow_circle: |
 | [Kind](https://kind.sigs.k8s.io/)                                      | :yellow_circle: |
 | [Talos](https://www.talos.dev/)                                        | :yellow_circle: |
 | [VKE](https://www.volcengine.com/product/vke)                          | :yellow_circle: |
-| [GKE](https://cloud.google.com/kubernetes-engine)                      | :red_circle:    |
 
 ### EKS
 
@@ -168,9 +168,89 @@ apiclient set --json "{
 
 Disable Spegel writing mirror configuration as it is already done in the bootstrap container.
 
-```yaml
+```yaml {filename="values.yaml"}
 spegel:
   containerdMirrorAdd: false
+```
+
+### GKE
+
+Spegel needs configuration to run on GKE natively due to default settings GKE. GKE will by default enable discard unpacked layers and use the legacy mirror configuration. To change this use a startup script along with specific GKE configuration.
+
+{{< callout >}}
+  There is an [open issue](https://issuetracker.google.com/issues/562778580) requesting GKE to expose these Containerd settings through the API. If you are a GKE user, do upvote and share your thoughts to help prioritize the work.
+{{< /callout >}}
+
+A project level compute metadata item is used to add a startup script to all GKE nodes. The startup script cannot be set on node pool level as it is a reserved key in GKE. This startup script will run for all VMs in the project, so an instance tag is used to only configure Containerd on GKE nodes. The script will write an override value to the import directory which Containerd will pickup before starting.
+
+Additionally a dummy containerd registry host needs to be set to force GKE to use the new mirror configuration. The host should not be a real registry to avoid any complications. Once Spegel starts it will replace the mirror configuration with it's own.
+
+Below is an example how this can be done using Terraform. The same idea can be adopted into other configuration management tools.
+
+```terraform
+resource "google_compute_project_metadata_item" "containerd_config" {
+  key = "startup-script"
+
+  value = <<-EOT
+    #!/bin/bash
+    set -euo pipefail
+
+    TAGS=$(curl -fsS -H 'Metadata-Flavor: Google' 'http://metadata.google.internal/computeMetadata/v1/instance/tags?alt=text')
+    if ! grep -qw 'gke-containerd-config' <<< "$TAGS"; then
+      exit 0
+    fi
+
+    mkdir -p /etc/containerd/conf.d
+    cat > /etc/containerd/conf.d/spegel.toml <<'EOF'
+    version = 2
+
+    [plugins."io.containerd.grpc.v1.cri".containerd]
+      discard_unpacked_layers = false
+    EOF
+  EOT
+}
+
+resource "google_container_cluster" "this" {
+  depends_on = [google_compute_project_metadata_item.containerd_config]
+
+  node_config {
+    tags = ["gke-containerd-config"]
+    containerd_config {
+      registry_hosts {
+        server = "example.com"
+        hosts {
+          host = "localhost"
+        }
+      }
+    }
+  }
+}
+
+resource "google_container_node_pool" "this" {
+  depends_on = [google_compute_project_metadata_item.containerd_config]
+
+  cluster    = google_container_cluster.this.name
+  node_config {
+    tags = ["gke-containerd-config"]
+    containerd_config {
+      registry_hosts {
+        server = "example.com"
+        hosts {
+          host = "localhost"
+        }
+      }
+    }
+  }
+}
+
+```
+
+After the creation all nodes will be properly configured for Spegel to run. These changes will not take effect on existing nodes. GKE uses a non standard registry config path so it needs to be updated for the mirror configuration to be written to the correct location.
+
+```yaml {filename="values.yaml"}
+priorityClassName: ""
+spegel:
+  containerdRegistryConfigPath: /etc/containerd/hosts.d
 ```
 
 ### K0S
@@ -188,7 +268,7 @@ version = 3
 
 After K0S has started Spegel can be installed with the slight modified values as the Containerd socket and content path will be different.
 
-```yaml
+```yaml {filename="values.yaml"}
 spegel:
   containerdSock: "/run/k0s/containerd.sock"
   containerdContentPath: "/var/lib/k0s/containerd/io.containerd.content.v1.content"
@@ -236,7 +316,7 @@ machine:
 
 Talos also uses a different path as its Containerd registry config path.
 
-```yaml
+```yaml {filename="values.yaml"}
 spegel:
   containerdRegistryConfigPath: /etc/cri/conf.d/hosts
 ```
@@ -255,12 +335,8 @@ You can view the exact range by running `sysctl net.ipv4.ip_local_port_range` on
 To workaround this issue, you need to set a custom hostPort when deploying spegel.
 This can easily be done by setting hostPort in the helm chart.
 
-```yaml
+```yaml {filename="values.yaml"}
 service:
   registry:
     hostPort: 3020
 ```
-
-### GKE
-
-GKE uses the default mirror configuration but discards unpacked layers. There is no simple way to override the configuration before Containerd starts.
